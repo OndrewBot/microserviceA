@@ -33,4 +33,4 @@ def read_item(units: str, amount: float, target: str):
         elif target == "cups":
             amount = round(amount / 48, 2)
     
-    return {"units": units, "amount": amount}
+    return {"units": target, "amount": amount}
