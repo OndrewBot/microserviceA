@@ -12,7 +12,7 @@ async def root():
 known_units = {"cups", "tbs", "tsp"}
 
 @app.get("/convert/units:{units}+amount:{amount}+target-units:{target}")
-def read_item(units: str, amount: int, target: str):
+def read_item(units: str, amount: float, target: str):
     if (units not in known_units)or (target not in known_units) :
         return {"invalid units - must be 'cups', 'tbs', 'tsp'"}
     if units == target:
@@ -21,10 +21,16 @@ def read_item(units: str, amount: int, target: str):
         if target == "tbs":
             amount = amount * 16
         elif target == "tsp":
-            pass
+            amount = amount * 48
     elif units == "tbs":
-        pass
+        if target == "cups":
+            amount = round(amount / 16, 2)
+        elif target == "tsp":
+            amount = amount * 3
     elif units == "tsp":
-        pass
+        if target == "tbs":
+            amount = round(amount / 3, 2)
+        elif target == "cups":
+            amount = round(amount / 48, 2)
     
     return {"units": units, "amount": amount}
