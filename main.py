@@ -9,7 +9,7 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World"}
 
-known_units = set("cups", "tbs", "tsp")
+known_units = {"cups", "tbs", "tsp"}
 
 @app.get("/convert/units:{units}+amount:{amount}+target-units:{target}")
 def read_item(units: str, amount: int, target: str):
