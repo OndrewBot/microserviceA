@@ -1,27 +1,50 @@
-# Deploy FastAPI on Render
+# Guide for Unit Conversion API  
 
-Use this repo as a template to deploy a Python [FastAPI](https://fastapi.tiangolo.com) service on Render.
+>Revision: 1.0.0   
+>Date: August 4, 2024   
+>Author: Andrew Bottom   
 
-See https://render.com/docs/deploy-fastapi or follow the steps below:
+This microservice will allow a user to convert from units of cups, tablespoons, or teaspoons into another of those same units.    
+The request must contain:  
+* Units (string type)   
+* Amount (float type)  
+* Target units (float or integer type)   
+   
+The response will provide a JSON with the following fields:    
+* Units (these are the target units as a string)   
+* Amount (the converted amount in the target units as a float)
+    
+Errors:    
+* If the formatting is not valid then the response will be "details not found"
+* If the units are not valid then the response will be "invalid units - must be 'cups', 'tbs', 'tsp'"   
+    
+## Server Location   
+The microservice is hosted by **Render** at this address and enpoint https://microservicea.onrender.com/convert
+Note: A common issue with free-tier servers is a timeout. If there's an issue with access, wait 50 sec before attemping to access again.   
 
-## Manual Steps
+## Requests
+This microservice accepts HTTP GET requests in order to issue a valid response.   
+Example: https://microservicea.onrender.com/convert?units=cups&amount=4&target=tsp     
+Formatting: `URL/convert?units={units}&amount={amount}&target={targetunits}`   
+Code example:   
+```
+import requests
+response = requests.get('https://microservicea.onrender.com/convert', 
+                    params={"units": "cups", "amount": 4, "target": "tsp"}) 
+```
 
-1. You may use this repository directly or [create your own repository from this template](https://github.com/render-examples/fastapi/generate) if you'd like to customize the code.
-2. Create a new Web Service on Render.
-3. Specify the URL to your new repository or this repository.
-4. Render will automatically detect that you are deploying a Python service and use `pip` to download the dependencies.
-5. Specify the following as the Start Command.
-
-    ```shell
-    uvicorn main:app --host 0.0.0.0 --port $PORT
-    ```
-
-6. Click Create Web Service.
-
-Or simply click:
-
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/render-examples/fastapi)
-
-## Thanks
-
-Thanks to [Harish](https://harishgarg.com) for the [inspiration to create a FastAPI quickstart for Render](https://twitter.com/harishkgarg/status/1435084018677010434) and for some sample code!
+## Requests
+This microservice accepts HTTP GET requests in order to issue a valid response.   
+Example: https://microservicea.onrender.com/convert?units=cups&amount=4&target=tsp     
+Formatting: `URL/convert?units={units}&amount={amount}&target={targetunits}`   
+Code example:   
+```
+import requests
+response = requests.get('https://microservicea.onrender.com/convert', 
+                    params={"units": "cups", "amount": 4, "target": "tsp"}) 
+```
+    
+## Citations
+1. FastAPI module - https://fastapi.tiangolo.com
+2. Render host- https://render.com,
+3. Starter code - https://github.com/render-examples/fastapi
