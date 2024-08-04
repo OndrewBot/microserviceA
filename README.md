@@ -52,13 +52,17 @@ if response.status_code == 200:
 ## Sequence Diagram   
 ```mermaid
 sequenceDiagram;
-   participant User;
+   actor User;
    participant UnitConversion;
    Note left of User: Unit must be formatted:<br/>'cups', 'tsp', 'tbs';
+   activate User;
+   activate UnitConversion;
    User->>UnitConversion: HTTP GET request<br/> {"units": "cups", "amount":4, "target":"tsp"};
    UnitConversion->>UnitConversion: Convert amount to the target units;
    Note right of UnitConversion: incorrect units trigger a<br/> response with unit spellings;
    UnitConversion->>User: JSON response<br/> {"units": "tbs", "amount":192.0};
+   deactivate User;
+   deactivate UnitConversion;
 ```
     
 ## Citations
