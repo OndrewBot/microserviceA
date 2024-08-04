@@ -9,10 +9,9 @@ app = FastAPI()
 async def root():
     return {"message": "Hello World"}
 
-known_units = {"cups", "tbs", "tsp"}
-
-@app.get("/convert/units:{units}+amount:{amount}+target-units:{target}")
+@app.get("/convert?units={units}&amount={amount}&target={target}")
 def read_item(units: str, amount: float, target: str):
+    known_units = {"cups", "tbs", "tsp"}
     if (units not in known_units)or (target not in known_units) :
         return {"invalid units - must be 'cups', 'tbs', 'tsp'"}
     if units == target:
