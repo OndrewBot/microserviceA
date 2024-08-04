@@ -25,7 +25,8 @@ Note: A common issue with free-tier servers is a timeout. If there's an issue wi
 ## Request    
 This microservice accepts HTTP GET requests in order to issue a valid response.   
 Example: https://microservicea.onrender.com/convert?units=cups&amount=4&target=tsp     
-Formatting: `URL/convert?units={units}&amount={amount}&target={targetunits}`   
+Formatting: `.../convert?units={units}&amount={amount}&target={targetunits}`   
+Units: `'cups', 'tbs', 'tsp'`
 Code example:   
 ```
 import requests
@@ -49,7 +50,14 @@ if response.status_code == 200:
 ```
 
 ## Sequence Diagram   
-
+sequenceDiagram
+   participant User
+   participant UnitConversion
+   Note left of User: Unit must be formatted:<br/>'cups', 'tsp', 'tbs'
+   User->>UnitConversion: HTTP GET request<br/> {"units": "cups", "amount":4, "target":"tsp"}
+   UnitConversion->>UnitConversion: Convert amount to the target units
+   Note right of UnitConversion: incorrect units trigger a<br/> response with unit spellings
+   UnitConversion->>User: JSON response<br/> {"units": "tbs", "amount":192.0}
     
 ## Citations
 1. FastAPI module - https://fastapi.tiangolo.com
