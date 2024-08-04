@@ -22,7 +22,7 @@ Errors:
 The microservice is hosted by **Render** at this address and enpoint https://microservicea.onrender.com/convert
 Note: A common issue with free-tier servers is a timeout. If there's an issue with access, wait 50 sec before attemping to access again.   
 
-## Requests
+## Request    
 This microservice accepts HTTP GET requests in order to issue a valid response.   
 Example: https://microservicea.onrender.com/convert?units=cups&amount=4&target=tsp     
 Formatting: `URL/convert?units={units}&amount={amount}&target={targetunits}`   
@@ -33,18 +33,26 @@ response = requests.get('https://microservicea.onrender.com/convert',
                     params={"units": "cups", "amount": 4, "target": "tsp"}) 
 ```
 
-## Requests
-This microservice accepts HTTP GET requests in order to issue a valid response.   
+## Response   
+This microservice will send a response with a valid HTTP GET request. The Status Code needs to be verified as 200 in order to prevent errors
 Example: https://microservicea.onrender.com/convert?units=cups&amount=4&target=tsp     
-Formatting: `URL/convert?units={units}&amount={amount}&target={targetunits}`   
+Formatting: `{"units":"tsp", "amount":192.0}`   
 Code example:   
 ```
 import requests
 response = requests.get('https://microservicea.onrender.com/convert', 
-                    params={"units": "cups", "amount": 4, "target": "tsp"}) 
+                    params={"units": "cups", "amount": 4, "target": "tsp"})
+if response.status_code == 200:
+    json_response = response.json()
+    print("New unit: ", json_response["units"])
+    print("New amount: ", json_response["amount"])
 ```
+
+## Sequence Diagram   
+
     
 ## Citations
 1. FastAPI module - https://fastapi.tiangolo.com
-2. Render host- https://render.com,
-3. Starter code - https://github.com/render-examples/fastapi
+2. Requests module - https://requests.readthedocs.io/en/latest/user/quickstart/#make-a-request
+3. Render host- https://render.com,
+4. Starter code - https://github.com/render-examples/fastapi
