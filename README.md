@@ -50,7 +50,7 @@ if response.status_code == 200:
 ```
 
 ## Sequence Diagram   
-sequenceDiagram
+sequenceDiagram   
    participant User
    participant UnitConversion
    Note left of User: Unit must be formatted:<br/>'cups', 'tsp', 'tbs'
