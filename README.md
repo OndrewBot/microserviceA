@@ -1,8 +1,9 @@
 # Guide for Unit Conversion API
-Revision: 1.0.0
-Date: August 4, 2024
-Author: Andrew Bottom
--------------------------
+-------------------------------
+>Revision: 1.0.0
+>Date: August 4, 2024
+>Author: Andrew Bottom
+
 This microservice will allow a user to convert from units of cups, tablespoons, or teaspoons into another of those same units.
 The request must contain:
 *Units
