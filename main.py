@@ -18,14 +18,14 @@ def read_item(units: str, amount: float, target: str):
         return {"units": units, "amount": amount}
     if units == "cups":
         if target == "tbs":
-            amount = amount * 16
+            amount = round(amount * 16, 2)
         elif target == "tsp":
-            amount = amount * 48
+            amount = round(amount * 48, 2)
     elif units == "tbs":
         if target == "cups":
             amount = round(amount / 16, 2)
         elif target == "tsp":
-            amount = amount * 3
+            amount = round(amount * 3, 2)
     elif units == "tsp":
         if target == "tbs":
             amount = round(amount / 3, 2)
