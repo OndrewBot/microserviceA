@@ -27,15 +27,23 @@ This microservice accepts HTTP GET requests in order to issue a valid response.
 Example: https://microservicea.onrender.com/convert?units=cups&amount=4&target=tsp     
 Formatting: `URL/convert?units={units}&amount={amount}&target={targetunits}`   
 Code example:   
-`import requests
-
+```
+import requests
 response = requests.get('https://microservicea.onrender.com/convert', 
-                    params={"units": "cups", "amount": 4, "target": "tsp"})
+                    params={"units": "cups", "amount": 4, "target": "tsp"}) 
+```
 
-if response.status_code == 200:
-    json_response = response.json()
-    print(json_response)`  
-
+## Requests
+This microservice accepts HTTP GET requests in order to issue a valid response.   
+Example: https://microservicea.onrender.com/convert?units=cups&amount=4&target=tsp     
+Formatting: `URL/convert?units={units}&amount={amount}&target={targetunits}`   
+Code example:   
+```
+import requests
+response = requests.get('https://microservicea.onrender.com/convert', 
+                    params={"units": "cups", "amount": 4, "target": "tsp"}) 
+```
+    
 ## Citations
 1. FastAPI module - https://fastapi.tiangolo.com
 2. Render host- https://render.com,
